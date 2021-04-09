@@ -1,28 +1,31 @@
-import { Client } from 'discord.js'
+/* eslint-disable @typescript-eslint/no-var-requires */
+import fs from 'fs'
+import Discord from 'discord.js'
+// import Commando from 'discord.js-commando'
 import config from '../config.json'
 
-const client: Client = new Client()
+export const client: Discord.Client = new Discord.Client()
 
-client.on('ready', () => {
-  console.log('logged in as', client.user?.tag)
+fs.readdir('./events/', (err, files) => {
+  if (err != null) return console.error(err)
+  files.forEach(file => {
+    const event = require(`./src/events/${file}`)
+    const eventName = file.split('.')[0]
+    client.on(eventName as any, event.bind(null, client))
+  })
 })
 
-client.on('message', (msg) => {
-  if (!msg.content.startsWith(config.prefix) ?? msg.author.bot) return
+export const commands = new Discord.Collection()
 
-  // separate command from prefix
-  const command = msg.content.slice(config.prefix.length)
-
-  if (msg.content.startsWith(config.prefix)) {
-    switch (command) {
-      case 'ping': {
-        msg.channel.send(`pong! (${msg.client.ws.ping}ms)`).catch(console.error)
-        break
-      }
-      default:
-        break
-    }
-  }
+fs.readdir('./commands/', (err, files) => {
+  if (err != null) return console.error(err)
+  files.forEach(file => {
+    if (!file.endsWith('.ts')) return
+    const props = require(`./src/commands/${file}`)
+    const commandName = file.split('.')[0]
+    console.log(`Attempting to load command ${commandName}`)
+    commands.set(commandName, props)
+  })
 })
 
 client.login(process.env.DISCORD_TOKEN ?? config.token).catch(console.error)
