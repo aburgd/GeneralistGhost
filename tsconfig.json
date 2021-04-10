@@ -1,9 +1,9 @@
 {
     "extends": "@tsconfig/node14/tsconfig.json",
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "src/index.ts"],
     "exclude": ["node_modules"],
     "compilerOptions": {
-        "lib": ["dom", "ES2016"],
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "target": "ES2020"
     }
 }

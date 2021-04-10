@@ -639,6 +639,15 @@ discord.js-commando@^0.12.3:
     is-promise "^4.0.0"
     require-all "^3.0.0"
 
+discord.js-commando@discordjs/Commando:
+  version "0.12.3"
+  resolved "https://codeload.github.com/discordjs/Commando/tar.gz/02be96bc92ac3c982a5acc4f7e81e71bfd587c95"
+  dependencies:
+    common-tags "^1.8.0"
+    emoji-regex "^9.2.0"
+    is-promise "^4.0.0"
+    require-all "^3.0.0"
+
 discord.js@^12.5.3:
   version "12.5.3"
   resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.5.3.tgz#56820d473c24320871df9ea0bbc6b462f21cf85c"
@@ -2597,10 +2606,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.3.tgz#39062d8019912d43726298f09493d598048c1ce3"
-  integrity sha512-qOcYwxaByStAWrBf4x0fibwZvMRG+r4cQoTjbPtUlrWjBHbmCAww1i448U0GJ+3cNNEtebDteo/cHOR3xJ4wEw==
+typescript@^4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
+  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
 unbox-primitive@^1.0.0:
   version "1.0.1"
