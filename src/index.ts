@@ -1,33 +1,27 @@
-import { Client } from 'discord.js'
+/* eslint-disable @typescript-eslint/no-var-requires */
+import Commando from 'discord.js-commando'
+import path from 'path'
 
-const client: Client = new Client()
-
-client.on('ready', () => {
-  console.log('logged in as', client.user?.tag)
+const client = new Commando.Client({
+  owner: '191999414817128449',
+  commandPrefix: 'penis'
 })
 
-client.on('message', (msg) => {
-  if (msg.content.startsWith('g!')) {
-    switch (msg.content.slice(2)) {
-      case 'status': {
-        if (msg.member?.roles.cache.has('827885048752635964') ?? true) {
-          msg.channel.send(`${msg.author.username}, I'm a Ghost. Actually, now I'm *your* Ghost. And you... Well, you've been dead a long time, so you're going to see a lot of things you won't understand.`).catch(console.error)
-        }
-        break
-      }
-      case 'roles': {
-        const memberRoles = msg.member?.roles.cache.map(rc => rc.name).join('\n')
-        msg.reply(`you have the following roles: ${memberRoles ?? ''}`).catch(console.error)
-        break
-      }
-      case 'ping': {
-        msg.channel.send(`pong! (${msg.client.ws.ping}ms)`).catch(console.error)
-        break
-      }
-      default:
-        break
-    }
-  }
+client.registry
+  .registerDefaults()
+  .registerGroups([
+    ['first', 'baby\'s first group']
+  ])
+  .registerCommandsIn({
+    filter: /^([^.].*)\.(js|ts)$/,
+    dirname: path.join(__dirname, 'commands')
+  })
+
+client.once('ready', () => {
+  console.log(`logged in as ${client.user?.tag ?? ''}`)
+  client.user?.setActivity('with themselves.')
 })
+
+client.on('error', console.error)
 
 client.login(process.env.DISCORD_TOKEN).catch(console.error)
