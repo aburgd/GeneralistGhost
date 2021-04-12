@@ -10,7 +10,8 @@ const client = new Commando.Client({
 client.registry
   .registerDefaults()
   .registerGroups([
-    ['first', 'baby\'s first group']
+    ['first', 'baby\'s first group'],
+    ['moderation', 'moderation commands']
   ])
   .registerCommandsIn({
     filter: /^([^.].*)\.(js|ts)$/,
