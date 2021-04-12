@@ -4,7 +4,7 @@ import path from 'path'
 
 const client = new Commando.Client({
   owner: '191999414817128449',
-  commandPrefix: 'penis'
+  commandPrefix: '.'
 })
 
 client.registry
