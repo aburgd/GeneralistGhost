@@ -36,13 +36,11 @@ module.exports = class KickCommand extends Command {
     const memberToKick: GuildMember = member
     // make reason a string
     const reasonString: string = reason.toString()
-    console.log(memberToKick.user.username)
-    console.log(reasonString)
     const kickConfirm: string = `${memberToKick.user.username} has been kicked with reason: ${reasonString}`
     const modChannel: TextChannel = memberToKick.guild.channels.cache.find(ch => ch.id === '831159533132316682') as TextChannel
-    modChannel.send(kickConfirm).catch(console.error)
-    // kick with reasonString as reason
     await memberToKick.kick(reasonString).catch(console.error)
-    return await message.say(`${memberToKick.user.toString()} has been kicked with reason: ${reasonString}`)
+    await modChannel.send(kickConfirm).catch(console.error)
+    // kick with reasonString as reason
+    return await message.say(kickConfirm)
   }
 }
