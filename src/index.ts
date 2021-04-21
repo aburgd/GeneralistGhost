@@ -11,7 +11,8 @@ client.registry
   .registerDefaults()
   .registerGroups([
     ['first', 'baby\'s first group'],
-    ['moderation', 'moderation commands']
+    ['moderation', 'moderation commands'],
+    ['server', 'server moderation commands']
   ])
   .registerCommandsIn({
     filter: /^([^.].*)\.(js|ts)$/,

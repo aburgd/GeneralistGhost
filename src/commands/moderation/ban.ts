@@ -2,9 +2,9 @@ import { Client, Command, CommandoMessage } from 'discord.js-commando'
 import { GuildMember, TextChannel } from 'discord.js'
 
 interface IBanOptions {
-    member: GuildMember
-    reason: string
-    days: number
+  member: GuildMember
+  reason: string
+  days: number
 }
 
 module.exports = class BanCommand extends Command {
@@ -41,7 +41,7 @@ module.exports = class BanCommand extends Command {
     const reasonString: string = reason.toString()
     const kickConfirm: string = `${memberToBan.user.username} has been banned with reason ${reasonString}`
     const modChannel: TextChannel = memberToBan.guild.channels.cache.find(ch => ch.id === '831159533132316682') as TextChannel
-    await memberToBan.ban({ days: days as number, reason: reasonString }).catch(console.error)
+    await memberToBan.ban({ days: days, reason: reasonString }).catch(console.error)
     await modChannel.send(kickConfirm).catch(console.error)
     return await message.say(kickConfirm)
   }
